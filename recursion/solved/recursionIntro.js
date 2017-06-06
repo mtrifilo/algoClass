@@ -53,9 +53,25 @@ function recursiveExponent(base, expo) {
   return base;
 }
 
-const exponentResult = recursiveExponent(3, 3);
-console.log("exponentResult:", exponentResult);
+// const exponentResult = recursiveExponent(3, 3);
+// console.log("exponentResult:", exponentResult);
 
 //5. Write a function 'recursiveMultiplier' that takes two arguments, 'arr and num', and multiplies each arr value into by num and returns an array of the values.
+function recursiveMultiplier(arr, num) {
+  let newArr = [];
+  let arrLen = arr.length;
 
+  function multiply(arrLen) {
+    if (arrLen > 0) {
+      newArr[arrLen - 1] = arr[arrLen - 1] * num;
+      return multiply(--arrLen);
+    }
+    return;
+  }
+  multiply(arrLen);
+  return newArr;
+}
+
+const testRM = recursiveMultiplier([1, 2, 3], 2);
+console.log("testRM:", testRM);
 //6. Write a function 'recursiveReverse' that takes an array and uses recursion to return its contents in reverse
