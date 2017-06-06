@@ -41,32 +41,72 @@ Make your set able to take objects, arrays, and functions as values in addition 
 
 function Set(capacity) {
   // implement me...
+  this._storage = [];
+  this._count = 0;
 }
 
 Set.prototype.count = function() {
   // implement me...
+  return this._count;
 };
 // Time complexity:
 
 Set.prototype.add = function(value) {
   // implement me...
+  if (this._storage.indexOf(value) < 0) {
+    this._storage.push(value);
+    ++this._count;
+    return value;
+  }
+  return "error: value is already in the set";
 };
 // Time complexity:
 
 Set.prototype.delete = function(value) {
   // implement me...
+  const valueIndex = this._storage.indexOf(value);
+  if (valueIndex < 0) {
+    return false;
+  }
+  this._storage.splice(valueIndex, 1);
+  --this._count;
+  return true;
 };
 // Time complexity:
 
 Set.prototype.has = function(value) {
   // implement me...
+  if (this._storage.indexOf(value) !== -1) {
+    return true;
+  }
+  return false;
 };
 // Time complexity:
 
 Set.prototype.forEach = function(callback) {
   // implement me...
+  this._storage.map(value => callback(value));
 };
 // Time complexity:
+
+let testSet = new Set(3);
+
+const testAdd = testSet.add("value");
+console.log("testAdd:", testAdd);
+console.log("testCount:", testSet.count());
+console.log("testHas:", testSet.has("value"));
+
+const testDelete = testSet.delete("value");
+console.log("testDelete:", testDelete);
+
+testSet.add(1);
+testSet.add(2);
+testSet.add(3);
+
+testSet.forEach(value => {
+  console.log("forEach: current value", value);
+  return value;
+});
 
 /*
 *** Exercises:
