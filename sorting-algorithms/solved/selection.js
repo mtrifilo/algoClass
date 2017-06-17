@@ -29,3 +29,28 @@ Stable Variant
 
 */
 
+function selectionSort (arr) {
+  console.log('arr.length', arr.length)
+
+  for (let i = 0; i < arr.length; i++) {
+
+    let smallestNum = arr[i];
+    let smallestNumIndex = i;
+
+    for (let j = i; j < arr.length; j++) {
+
+      if (arr[j] < smallestNum) {
+        smallestNum = arr[j];
+        smallestNumIndex = j;
+      }
+    }
+    const temp = arr[i];
+    arr[i] = smallestNum;
+    arr[smallestNumIndex] = temp;
+  }
+  return arr;
+}
+
+const sorted = selectionSort([8, 12, 5, 43, 3, 2, 1, 6, 22])
+
+console.log(sorted)
